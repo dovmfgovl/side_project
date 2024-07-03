@@ -1,0 +1,30 @@
+server:
+  #tomcat:
+   # additional-tld-skip-patterns: "*.jar"
+  port: 8080
+ # servlet:
+  #  context-path: /
+   # encoding:
+    #  charset: UTF-8
+     # enabled: true
+     # force: true
+spring:
+ # output:
+  #  ansi:
+   #   enabled: always
+  #mvc:
+   # view:
+    #  prefix: /WEB-INF/views/
+     # suffix: .jsp
+  datasource:
+    url: jdbc:mysql://localhost:3306/side_project
+    username: plum
+    password: 131215
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  #servlet:
+   # multipart:
+    #  max-file-size: 10MB
+     # enabled: true
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  config-location: classpath:mybatis-config.xml
