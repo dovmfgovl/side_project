@@ -5,6 +5,8 @@ import com.plum.notice.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class NoticeService {
@@ -12,5 +14,17 @@ public class NoticeService {
 
     public void insert(NoticeDTO noticeDTO) {
         noticeRepository.insert(noticeDTO);
+    }
+
+    public List<NoticeDTO> noticeFullList() {
+        return noticeRepository.noticeFullList();
+    }
+
+    public NoticeDTO detailView(int no) {
+        return noticeRepository.detailView(no);
+    }
+
+    public void delete(int no) {
+        noticeRepository.delete(no);
     }
 }

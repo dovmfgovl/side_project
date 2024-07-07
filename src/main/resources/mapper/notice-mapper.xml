@@ -6,4 +6,18 @@
         insert into notice(title, content, user, date)
         values (#{title}, #{content}, #{user}, current_timestamp)
     </insert>
+    <select id="noticeFullList" resultType="notice">
+        select no, title, content, user, date
+            from notice
+            order by no desc
+    </select>
+    <select id="detailView" resultType="notice">
+        select no, title, content, user, date
+            from notice
+            where no=#{no}
+    </select>
+    <delete id="delete" parameterType="int">
+        delete from notice
+        where no=#{no}
+    </delete>
 </mapper>

@@ -8,7 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class NoticeDTO {
-    private int no;
+    private long no;
     private String title;
     private String content;
     private String user;
