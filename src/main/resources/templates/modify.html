@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modify</title>
+</head>
+
+<style>
+    .layout {
+        width: 90%;
+        margin: 40px auto 0;
+    }
+    .layout input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .layout textarea {
+        width: 100%;
+        margin-top: 10px;
+        min-height: 300px;
+    }
+</style>
+<body>
+<h1>⚒️게시글 수정⚒️</h1>
+<div class="layout">
+    <form th:action="@{${notice.no}}" method="post">
+        <input name="title" type="text" th:value="${notice.title}">
+        <!-- textarea는 value가 아닌 text로 -->
+        <textarea name="content" th:text="${notice.content}" />
+        <button type="submit">수정</button>
+    </form>
+</div>
+</body>
+</html>

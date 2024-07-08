@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -44,5 +45,22 @@ public class NoticeController {
     public String delete(@PathVariable("no") int no) {
         noticeService.delete(no);
         return "redirect:/list";
+    }
+
+    // 수정 페이지로 이동
+    @GetMapping("/modify/{no}")
+    public String modify(@PathVariable("no") int no, Model model) {
+        model.addAttribute("notice", noticeService.detailView(no));
+        return "modify";
+    }
+
+    // 수정한 내용 DB 저장
+    @PostMapping("/modify/{no}")
+    public String modify(NoticeDTO noticeDTO, Model model) {
+        // DB 저장 요청
+        noticeService.modify(noticeDTO);
+        // 수정 내용 다시 조회
+        model.addAttribute("notice", noticeService.detailView((int) noticeDTO.getNo()));
+        return "detail";
     }
 }

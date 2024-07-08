@@ -20,4 +20,9 @@
         delete from notice
         where no=#{no}
     </delete>
+    <update id="update" parameterType="notice">
+        update notice
+        set title=#{title}, content=#{content}
+        where no=#{no}
+    </update>
 </mapper>

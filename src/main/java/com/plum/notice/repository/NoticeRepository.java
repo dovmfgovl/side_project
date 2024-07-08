@@ -27,4 +27,8 @@ public class NoticeRepository {
     public void delete(int no) {
         sqlSessionTemplate.delete("Notice.delete", no);
     }
+
+    public void modify(NoticeDTO noticeDTO) {
+        sqlSessionTemplate.update("Notice.update", noticeDTO);
+    }
 }

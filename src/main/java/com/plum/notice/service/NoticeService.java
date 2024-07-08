@@ -27,4 +27,8 @@ public class NoticeService {
     public void delete(int no) {
         noticeRepository.delete(no);
     }
+
+    public void modify(NoticeDTO noticeDTO) {
+        noticeRepository.modify(noticeDTO);
+    }
 }
