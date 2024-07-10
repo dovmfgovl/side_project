@@ -6,12 +6,14 @@
 </head>
 <body>
 <h1>✔️공지글 적기~*</h1>
-<form action="/insert" method="post">
+<form action="/insert" method="post" enctype="multipart/form-data">
     제목: <input type="text" name="title"><br>
     <br>
-    내용: <input type="text" name="content"><br>
+    내용: <textarea type="text" name="content"></textarea><br>
     <br>
     작성자: <input type="text" name="user"><br>
+    <br>
+    파일: <input type="file" name="files" multiple><br>
     <br>
     <input type="submit" value="작성❤️">
 </form>

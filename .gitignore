@@ -38,3 +38,6 @@ out/
 
 # Exclude application.yml
 application.yml
+
+# Exclude upload_files
+**/src/main/resources/upload_files/

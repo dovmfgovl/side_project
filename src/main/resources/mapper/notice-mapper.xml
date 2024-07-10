@@ -2,19 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Notice">
-    <insert id="insert" parameterType="notice">
-        insert into notice(title, content, user, date)
-        values (#{title}, #{content}, #{user}, current_timestamp)
+    <insert id="insert" parameterType="notice" useGeneratedKeys="true" keyProperty="no">
+        insert into notice(title, content, user, date, fileCheck)
+        values (#{title}, #{content}, #{user}, current_timestamp, #{fileCheck})
     </insert>
     <select id="noticeFullList" resultType="notice">
         select no, title, content, user, date
             from notice
             order by no desc
     </select>
-    <select id="detailView" resultType="notice">
-        select no, title, content, user, date
+    <select id="detailView" parameterType="int" resultType="notice">
+        select no, title, content, user, date, fileCheck
             from notice
             where no=#{no}
+    </select>
+    <insert id="insertFile" parameterType="noticeFile">
+        insert into notice_file(noticeNo, originalFileName, savedFileName)
+        values (#{noticeNo}, #{originalFileName}, #{savedFileName})
+    </insert>
+    <select id="findFile" parameterType="int" resultType="noticeFile">
+        select * from notice_file where noticeNo = #{no}
     </select>
     <delete id="delete" parameterType="int">
         delete from notice

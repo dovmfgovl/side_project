@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -27,8 +28,15 @@ public class NoticeController {
 
     // IOException이 발생할 수 있으므로 예외를 throws
     @PostMapping("/insert")
-    public String insert(NoticeDTO noticeDTO) throws IOException {
-        noticeService.insert(noticeDTO);
+    public String insert(NoticeDTO noticeDTO, List<MultipartFile> files) {
+        noticeDTO.setNoticeFiles(files);
+        System.out.println("Files: " + files);
+        try {
+            noticeService.insert(noticeDTO);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return "redirect:/list";
     }
 
@@ -45,7 +53,7 @@ public class NoticeController {
         model.addAttribute("notice", noticeDTO);
         // 파일 첨부
         if (noticeDTO.getFileCheck() == 1) {
-            List<NoticeFileDTO> noticeFileDTOs = noticeService.detailView(no);
+            List<NoticeFileDTO> noticeFileDTOs = noticeService.findFile(no);
             model.addAttribute("noticeFileDTOs", noticeFileDTOs);
         }
         return "detail";

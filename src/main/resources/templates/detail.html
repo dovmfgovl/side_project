@@ -35,16 +35,13 @@
         <th scope="col">작성일자</th>
         <td th:text="${notice.date}"></td>
     </tr>
+    <tr th:if="${notice.fileCheck == 1}">
+        <th scope="col">사진</th>
+        <td th:each="noticeFiles: ${noticeFileDTOs}">
+            <img th:src="@{/upload/${noticeFiles.savedFileName}}" alt="이미지" width="200" height="200">
+        </td>
+    </tr>
 </table>
-<!--<a th:href="@{/list}" >
-    <button>목록</button>
-</a>
-<a th:href="@{/modify}">
-    <button>수정</button>
-</a>
-<a th:href="@{/delete/{no}(no=${notice.no})}">
-    <button>삭제</button>
-</a>-->
 
 <button type="button" th:onclick="|location.href='@{/list}'|">목록</button>
 <button type="button" th:onclick="|location.href='@{/modify/{no}(no=${notice.no})}'|">수정</button>

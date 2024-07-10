@@ -4,5 +4,6 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.plum.notice.dto.NoticeDTO" alias="notice"></typeAlias>
+        <typeAlias type="com.plum.notice.dto.NoticeFileDTO" alias="noticeFile"></typeAlias>
     </typeAliases>
 </configuration>
