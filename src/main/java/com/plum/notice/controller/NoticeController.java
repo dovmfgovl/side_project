@@ -1,6 +1,7 @@
 package com.plum.notice.controller;
 
 import com.plum.notice.dto.NoticeDTO;
+import com.plum.notice.dto.NoticeFileDTO;
 import com.plum.notice.service.NoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,8 +25,9 @@ public class NoticeController {
         return "insert";
     }
 
+    // IOException이 발생할 수 있으므로 예외를 throws
     @PostMapping("/insert")
-    public String insert(NoticeDTO noticeDTO) {
+    public String insert(NoticeDTO noticeDTO) throws IOException {
         noticeService.insert(noticeDTO);
         return "redirect:/list";
     }
@@ -37,7 +40,14 @@ public class NoticeController {
 
     @GetMapping("/{no}")
     public String detailView(@PathVariable("no") int no, Model model) {
-        model.addAttribute("notice", noticeService.detailView(no));
+        // 상세보기
+        NoticeDTO noticeDTO = noticeService.detailView(no);
+        model.addAttribute("notice", noticeDTO);
+        // 파일 첨부
+        if (noticeDTO.getFileCheck() == 1) {
+            List<NoticeFileDTO> noticeFileDTOs = noticeService.detailView(no);
+            model.addAttribute("noticeFileDTOs", noticeFileDTOs);
+        }
         return "detail";
     }
 
