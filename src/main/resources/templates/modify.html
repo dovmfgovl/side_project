@@ -26,7 +26,7 @@
     <form th:action="@{${notice.no}}" method="post">
         <input name="title" type="text" th:value="${notice.title}">
         <!-- textarea는 value가 아닌 text로 -->
-        <textarea name="content" th:text="${notice.content}" />
+        <textarea name="content" th:text="${notice.content}"></textarea>
         <button type="submit">수정</button>
     </form>
 </div>

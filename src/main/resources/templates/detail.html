@@ -37,8 +37,8 @@
     </tr>
     <tr th:if="${notice.fileCheck == 1}">
         <th scope="col">사진</th>
-        <td th:each="noticeFiles: ${noticeFileDTOs}">
-            <img th:src="@{${noticeFiles.savedFileName}}" alt="이미지" width="200" height="200">
+        <td th:each="noticeFile: ${noticeFileDTOs}">
+            <img th:src="@{/upload/{savedFileName}(savedFileName=${noticeFile.savedFileName})}" alt="이미지" width="200" height="200">
         </td>
     </tr>
 </table>

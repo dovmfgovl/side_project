@@ -39,6 +39,7 @@ public class NoticeRepository {
     }
 
     public List<NoticeFileDTO> findFile(int no) {
+        System.out.println("findFile 실행");
         return sqlSessionTemplate.selectList("Notice.findFile", no);
     }
 }
