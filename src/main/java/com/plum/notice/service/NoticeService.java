@@ -44,8 +44,8 @@ public class NoticeService {
                 noticeFileDTO.setSavedFileName(savedFileName);
                 noticeFileDTO.setNoticeNo(insertNotice.getNo());
 
-                //String uploadDir = "C:/Users/SeulGi/Desktop/Developer/이직준비/notice/src/main/resources/upload_files/";
-                String uploadDir = "C:/Users/dovmf/Desktop/project/side_project/src/main/resources/upload_files/";
+                String uploadDir = "C:/Users/SeulGi/Desktop/Developer/이직준비/notice/src/main/resources/upload_files/";
+                //String uploadDir = "C:/Users/dovmf/Desktop/project/side_project/src/main/resources/upload_files/";
                 String savePath = uploadDir + savedFileName;
                 // 파일이 저장되도록 구현하는 코드
                 noticeFile.transferTo(new File(savePath));
